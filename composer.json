@@ -1,0 +1,28 @@
+{
+    "name": "drmarkyslo/mautic-mjml-api-bundle",
+    "description": "Mautic plugin for creating and editing emails via API using MJML content.",
+    "type": "mautic-plugin",
+    "version": "1.0.0",
+    "keywords": ["mautic", "plugin", "mjml", "api", "email", "grapesjs"],
+    "homepage": "https://github.com/drMarkySlo/mautic-mjml-api-plugin",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Mark Poljanšek",
+            "role": "Developer",
+            "homepage": "https://github.com/drMarkySlo"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/drMarkySlo/mautic-mjml-api-plugin/issues",
+        "source": "https://github.com/drMarkySlo/mautic-mjml-api-plugin"
+    },
+    "require": {
+        "mautic/core-lib": "^4.0 || ^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MauticPlugin\\MauticMjmlApiBundle\\": ""
+        }
+    }
+}
