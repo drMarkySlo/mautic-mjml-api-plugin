@@ -97,16 +97,19 @@ class MjmlApiController extends CommonApiController
             }
             
             // Handle Publish Up/Down
+            // Določimo časovni pas Ljubljana
+            $timezone = new \DateTimeZone('Europe/Ljubljana');
+            
             if (!empty($data['publishUp'])) {
                 try {
-                    $email->setPublishUp(new \DateTime($data['publishUp']));
+                    $email->setPublishUp(new \DateTime($data['publishUp'], $timezone));
                 } catch (\Exception $e) {
                     // Ignore invalid date format
                 }
             }
             if (!empty($data['publishDown'])) {
                 try {
-                    $email->setPublishDown(new \DateTime($data['publishDown']));
+                    $email->setPublishDown(new \DateTime($data['publishDown'], $timezone));
                 } catch (\Exception $e) {
                     // Ignore invalid date format
                 }
@@ -208,10 +211,13 @@ class MjmlApiController extends CommonApiController
             }
             
             // Update Publish Dates
+            // Določimo časovni pas Ljubljana
+            $timezone = new \DateTimeZone('Europe/Ljubljana');
+            
             if (array_key_exists('publishUp', $data)) {
                 if (!empty($data['publishUp'])) {
                     try {
-                        $email->setPublishUp(new \DateTime($data['publishUp']));
+                        $email->setPublishUp(new \DateTime($data['publishUp'], $timezone));
                     } catch (\Exception $e) {
                         // Ignore invalid date format
                     }
@@ -222,7 +228,7 @@ class MjmlApiController extends CommonApiController
             if (array_key_exists('publishDown', $data)) {
                 if (!empty($data['publishDown'])) {
                     try {
-                        $email->setPublishDown(new \DateTime($data['publishDown']));
+                        $email->setPublishDown(new \DateTime($data['publishDown'], $timezone));
                     } catch (\Exception $e) {
                         // Ignore invalid date format
                     }
