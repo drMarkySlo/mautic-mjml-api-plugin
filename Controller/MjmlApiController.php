@@ -96,6 +96,27 @@ class MjmlApiController extends CommonApiController
                 $email->setReplyToAddress($data['replyToAddress']);
             }
             
+            // Handle Publish Up/Down
+            if (!empty($data['publishUp'])) {
+                try {
+                    $email->setPublishUp(new \DateTime($data['publishUp']));
+                } catch (\Exception $e) {
+                    // Ignore invalid date format
+                }
+            }
+            if (!empty($data['publishDown'])) {
+                try {
+                    $email->setPublishDown(new \DateTime($data['publishDown']));
+                } catch (\Exception $e) {
+                    // Ignore invalid date format
+                }
+            }
+            
+            // Handle UTM Tags
+            if (isset($data['utmTags']) && is_array($data['utmTags'])) {
+                $email->setUtmTags($data['utmTags']);
+            }
+            
             // Add lists to email BEFORE saving
             $listModel = $this->getModel('lead.list');
             foreach ($data['lists'] as $listId) {
@@ -184,6 +205,46 @@ class MjmlApiController extends CommonApiController
             }
             if (isset($data['isPublished'])) {
                 $email->setIsPublished($data['isPublished']);
+            }
+            
+            // Update Publish Dates
+            if (array_key_exists('publishUp', $data)) {
+                if (!empty($data['publishUp'])) {
+                    try {
+                        $email->setPublishUp(new \DateTime($data['publishUp']));
+                    } catch (\Exception $e) {
+                        // Ignore invalid date format
+                    }
+                } else {
+                    $email->setPublishUp(null);
+                }
+            }
+            if (array_key_exists('publishDown', $data)) {
+                if (!empty($data['publishDown'])) {
+                    try {
+                        $email->setPublishDown(new \DateTime($data['publishDown']));
+                    } catch (\Exception $e) {
+                        // Ignore invalid date format
+                    }
+                } else {
+                    $email->setPublishDown(null);
+                }
+            }
+            
+            // Update UTM Tags
+            if (isset($data['utmTags']) && is_array($data['utmTags'])) {
+                $email->setUtmTags($data['utmTags']);
+            }
+            
+            // Update Sender Info
+            if (isset($data['fromName'])) {
+                $email->setFromName($data['fromName']);
+            }
+            if (isset($data['fromAddress'])) {
+                $email->setFromAddress($data['fromAddress']);
+            }
+            if (isset($data['replyToAddress'])) {
+                $email->setReplyToAddress($data['replyToAddress']);
             }
             
             // Update lists if provided

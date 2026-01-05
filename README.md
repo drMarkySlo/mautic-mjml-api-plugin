@@ -60,6 +60,9 @@ Create a new email by sending MJML content.
 | `mjml` | string | **Yes** | The raw MJML source code. |
 | `lists` | array | **Yes** | Array of Segment IDs (e.g., `[1, 5]`). |
 | `isPublished` | boolean | No | `true` or `false` (default: `false`). |
+| `publishUp` | string | No | Publish start date/time (ISO 8601 format, e.g., `2025-12-15T10:00:00`). |
+| `publishDown` | string | No | Publish end date/time (ISO 8601 format, e.g., `2025-12-31T23:59:59`). |
+| `utmTags` | object | No | UTM tracking parameters (e.g., `{"utmSource": "newsletter", "utmMedium": "email"}`). |
 | `template` | string | No | Mautic theme/template. Default is `blank`. **Recommended to keep generic/blank** to avoid style conflicts. |
 | `fromAddress` | string | No | Sender email address. |
 | `fromName` | string | No | Sender name. |
@@ -79,7 +82,14 @@ curl -X POST 'https://your-mautic-url.com/api/emails/mjml/new' \
     "lists": [3, 15],
     "fromAddress": "news@example.com",
     "fromName": "Company News",
-    "isPublished": false
+    "isPublished": false,
+    "publishUp": "2025-12-15T10:00:00",
+    "publishDown": "2025-12-31T23:59:59",
+    "utmTags": {
+      "utmSource": "newsletter",
+      "utmMedium": "email",
+      "utmCampaign": "december2025"
+    }
   }'
 ```
 
@@ -122,6 +132,12 @@ Update an existing email's MJML content, subject, or settings.
 | `subject` | string | New subject line. |
 | `name` | string | New internal name. |
 | `isPublished` | boolean | Change publication status. |
+| `publishUp` | string | Publish start date/time (ISO 8601 format). Set to empty string to clear. |
+| `publishDown` | string | Publish end date/time (ISO 8601 format). Set to empty string to clear. |
+| `utmTags` | object | UTM tracking parameters (overwrites existing). |
+| `fromAddress` | string | Sender email address. |
+| `fromName` | string | Sender name. |
+| `replyToAddress` | string | Reply-to email address. |
 | `lists` | array | New array of segment IDs (overwrites existing!). |
 
 #### Example Request
