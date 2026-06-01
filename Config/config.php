@@ -12,12 +12,12 @@ return [
         'api' => [
             'mautic_api_mjml_emails_new' => [
                 'path'       => '/emails/mjml/new',
-                'controller' => 'MauticMjmlApiBundle:MjmlApi:createEmail',
+                'controller' => 'MauticPlugin\MauticMjmlApiBundle\Controller\MjmlApiController::createEmailAction',
                 'method'     => 'POST',
             ],
             'mautic_api_mjml_emails_edit' => [
                 'path'       => '/emails/mjml/{id}/edit',
-                'controller' => 'MauticMjmlApiBundle:MjmlApi:editEmail',
+                'controller' => 'MauticPlugin\MauticMjmlApiBundle\Controller\MjmlApiController::editEmailAction',
                 'method'     => 'PATCH',
             ],
         ],
