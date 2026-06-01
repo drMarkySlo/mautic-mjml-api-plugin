@@ -57,7 +57,7 @@ class MjmlApiController extends CommonApiController
         
         try {
             $emailModel = $this->getModel('email');
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->doctrine->getManager();
             
             // Compile MJML to HTML
             $mjmlCompiler = new MjmlCompiler();
@@ -166,7 +166,7 @@ class MjmlApiController extends CommonApiController
         
         try {
             $emailModel = $this->getModel('email');
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->doctrine->getManager();
             
             // Get existing email
             $email = $emailModel->getEntity($id);
